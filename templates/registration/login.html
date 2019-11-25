@@ -1,0 +1,221 @@
+
+
+
+
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Sign Up Form </title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="{% static 'fonts/material-icon/css/material-design-iconic-font.min.css' %}">
+    <!--<link rel="stylesheet" href="">-->
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <style>
+        .flip-card {
+            margin: 10vh auto auto auto;
+            background-color: transparent;
+            width: 55vw;
+            height: 70vh;
+            perspective: 1000px;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+            position: absolute;
+            width: 55vw;
+            height: 70vh;
+            backface-visibility: hidden;
+        }
+
+        .flip-card-front {}
+
+        .flip-card-back {
+            transform: rotateY(180deg);
+        }
+        body
+        {
+        background-image : url({% static 'images/FoodBackground.jpg' %});
+   background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  }
+  .loader {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display :block;
+    background: url('https://lkp.dispendik.surabaya.go.id/assets/loading.gif') 50% 50% no-repeat rgb(249,249,249);
+    }
+
+    </style>
+</head>
+
+<body >
+
+
+<div class="loader">
+
+
+</div>
+
+<script>
+$(".loader").hide();
+
+ function fun() {
+$(".loader").show();
+
+}
+
+</script>
+
+
+    <div class="main" style="  background-image : url({% static 'images/FoodBackground.jpg' %});
+   background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; ">
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front shadow-lg">
+                    <div class="container">
+                        <div class="signup-content">
+                            <div class="signup-form">
+                                <h2 class="form-title">Sign up</h2>
+                                <form method="POST" class="register-form" id="register-form" action="http://127.0.0.1:8000/signup/">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                        <input type="text" name="username" id="name" placeholder="Username" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email"><i class="zmdi zmdi-email"></i></label>
+                                        <input type="email" name="email" id="email" placeholder="Your Email" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pass"><i class="zmdi zmdi-lock"></i></label>
+                                        <input type="password" name="password1" id="pass" placeholder="Password" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
+                                        <input type="password" name="password2" id="re_pass" placeholder="Repeat your password" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                                        <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
+                                    </div>
+                                    <div class="form-group form-button">
+                                        <input type="submit" onclick="fun()" name="signup" id="signup" class="form-submit" value="Register" />
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="signup-image">
+                                <figure><img src="{% static 'images/signup-image.jpg' %}" alt="sing up image"></figure>
+                                <a href="#" class="signup-image-link" id="flipme1">I am already member</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card-back shadow-lg">
+                    <div class="container">
+                        <div class="signin-content">
+                            <div class="signin-image">
+                                <figure><img src="{% static 'images/signin-image.jpg' %}" alt="sing up image"></figure>
+                                <a href="#" class="signup-image-link" id='flipme2'>Create an account</a>
+                            </div>
+
+                            <div class="signin-form">
+                                <h2 class="form-title">Sign In</h2>
+
+                                <form method="POST" class="register-form" id="login-form" action="/accounts/login/" >
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label for="username"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                        <input type="text" name="username" id="name" placeholder="User Name" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
+                                        <input type="password" name="password" id="your_pass" placeholder="Password" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" name="remember-me"  id="remember-me" class="agree-term" />
+                                        <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
+                                    </div>
+                                    <div class="form-group form-button">
+                                        <input type="submit" name="signin" onclick="fun()" id="signin" class="form-submit" value="Log in" />
+                                    </div>
+                                </form>
+                                <div class="social-login">
+                                    <span class="social-label">Or login with</span>
+                                    <ul class="socials">
+                                        <li><a href="#"><i class="display-flex-center zmdi zmdi-facebook"></i></a></li>
+                                        <li><a href="#"><i class="display-flex-center zmdi zmdi-twitter"></i></a></li>
+                                        <li><a href="#"><i class="display-flex-center zmdi zmdi-google"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+    </div>
+
+    <!-- JS -->
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+        <!--<link rel="stylesheet" href="{% static 'food/css/style.css' %}">-->
+
+    <script src="{% static 'js/main.js' %}"></script>
+
+
+
+    <script>
+        $(document).ready(function() {
+            $("#flipme1").click(function() {
+
+                $('.flip-card-inner').css('transform', "rotateY(180deg");
+            });
+            $("#flipme2").click(function() {
+
+                $('.flip-card-inner').css('transform', "rotateY(360deg");
+            });
+
+        });
+    </script>
+</body>
+<!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>

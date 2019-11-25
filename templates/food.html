@@ -1,0 +1,18 @@
+<form action="/food/" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>
+
+
+{% if food %}
+    {% for message in food %}
+        {{ message.name }}<br>
+        {{ message.id }}<br>
+
+        <a href= '{% url "foods_delete" message.id %}'> delete </a>
+<hr>
+    {% endfor %}
+{% else %}
+    <div>No new foods for you</div>
+{% endif %}
